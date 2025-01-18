@@ -1,49 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Shop</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Themed Shopping Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0 10px;
+    position: relative;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    padding: 10px 15px;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+/* Extras Section */
+.extras {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    width: 200px;
+}
+
+.search-bar button {
+    border: none;
+    background-color: #555;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cart {
+    position: relative;
+}
+
+.cart a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile {
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 4px;
+    }
+
+    .menu li {
+        margin: 0;
+    }
+
+    .menu a {
+        padding: 10px;
+    }
+
+    #menu-toggle:checked + .menu-icon + .menu {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .extras {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar input {
+        width: 150px;
+    }
+}
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #333333, #121212);
+        }
+        .hero h2 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .hero p {
+            font-size: 18px;
+        }
+        .products-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.products {
+    display: inline-flex;
+    gap: 15px; /* Reduced gap between cards */
+}
+
+.product {
+    background-color: #1f1f1f;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    text-align: center;
+    min-width: 200px; /* Reduced minimum width */
+    flex: none;
+}
+
+.product img {
+    width: 100%; /* Adjusted width to fit smaller cards */
+    height: 150px; /* Reduced height */
+    max-width: 100%;
+    border-radius: 5px; /* Slightly rounded corners */
+    object-fit: cover;
+}
+
+.product h3 {
+    margin: 8px 0 5px; /* Reduced margin */
+    font-size: 14px; /* Smaller font size */
+}
+
+.product p {
+    margin: 0 0 8px; /* Reduced margin */
+    font-size: 12px; /* Smaller font size */
+}
+
+.product button {
+    background-color: #ff5722;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px; /* Reduced button padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+}
+
+.product button:hover {
+    background-color: #e64a19;
+}
+
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .slider { position: relative; width: 100%; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; height: 500px; } .slides { display: flex; transition: transform 0.5s ease-in-out; } .slide { min-width: 100%; box-sizing: border-box; padding: 20px; background-color: #ffffff; border-radius: 10px; } .slide h2 { margin: 0 0 10px; font-size: 24px; } .slide p { font-size: 16px; line-height: 1.5; } .slide img { max-width: 100%; border-radius: 10px; margin-bottom: 10px; }
+            @keyframes slide {
+                0% { transform: translateX(0%); }
+                20% { transform: translateX(0%); }
+                25% { transform: translateX(-100%); }
+                45% { transform: translateX(-100%); }
+                50% { transform: translateX(-200%); }
+                70% { transform: translateX(-200%); }
+                75% { transform: translateX(-300%); }
+                95% { transform: translateX(-300%); }
+                100% { transform: translateX(0%); }
+            }
+            .slides {
+                animation: slide 20s infinite;
+            }
+    </style>
 </head>
 <body>
+    <header>
+         <div class="logo">
+             <h1>ShopEasy</h1>
+            </div> <nav> <input type="checkbox" id="menu-toggle"> 
+                <label for="menu-toggle" class="menu-icon">&#9776;</label>
+                 <ul class="menu"> <li><a href="#">Home</a>
+                </li> <li><a href="#">Products</a></li>
+                 <li class="dropdown"> <a href="#">Categories</a>
+                     <ul class="dropdown-menu"> <li><a href="#">Electronics</a>
+</li> <li><a href="#">Fashion</a></li> <li><a href="#">Home Appliances</a></li> </ul> </li>
+ <li><a href="#">Contact</a></li> <li><a href="#">About</a></li> </ul>
+  <div class="extras"> <div class="search-bar"> <input type="text" placeholder="Search for products..." /> 
+    <button>🔍</button> </div> <div class="cart"> <a href="#"> 🛒 <span class="cart-count">3</span> </a> </div>
+     <div class="profile dropdown"> <a href="#">👤</a> <ul class="dropdown-menu"> <li><a href="#">My Account</a></li>
+         <li><a href="#">Orders</a></li> <li><a href="#">Wishlist</a></li> <li><a href="#">Logout</a></li> </ul> </div> </div> </nav> </header>
+          <div class="slider">
+             <div class="slides">
+                 <div class="slide">
+                     <h2>Card 1</h2>
+                     <img src="https://clipground.com/images/iphones-png-4.png" alt="Product 2">
+                      <p>This is the first card.</p> </div>
+                       <div class="slide"> <h2>Card 2</h2>
+                        <img src="" alt="Product 3">
+             <p>This is the second card.</p> </div> 
+                       <div class="slide"> <h2>Card 3</h2>
+                        <img src="" alt="Product 1"> <p>This is the third card.</p> 
+                    </div> 
+                    <div class="slide"> <h2>Card 4</h2>
+                        <img src="" alt="Product 1">
 
-  <!-- Header Section -->
-  <header>
-    <div class="logo">My Shop</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Cart</a></li>
-      </ul>
-    </nav>
-  </header>
+                         <p>This is the fourth card.</p> </div> 
+                        </div> </div> <section class="hero"> <h2>Welcome to ShopEasy</h2> <p>Your one-stop shop for the latest products.</p> </section>
+    
+   
 
-  <!-- Main Content -->
-  <main>
-    <!-- Homepage Banner -->
-    <section class="banner">
-      <h1>Welcome to My Shop</h1>
-      <p>Explore the best products at unbeatable prices!</p>
-    </section>
+   <section class="products-container">
+    <div class="products">
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/44/00/LD0005440098_2_0005440176_0005440261.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/r1600/ld/products/00/05/44/00/LD0005440043_2.jpg" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.bHTExtbGTXxZwc0GSWl8XAHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UPVrldN2D_n15WTi2HrC-QAAAA?w=267&h=400&rs=1&pid=ImgDetMain" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://3.bp.blogspot.com/-EvWRqyLLyFk/WSwyMErQzNI/AAAAAAAAAyI/D8vzDQxNa3IKzRMu6ZRKnhMdp2OLjWyTQCLcB/s1600/Apple-IPhone.png" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.f0TxVuQRnOhEoQq9JCmlzwHaHa?rs=1&pid=ImgDetMain" alt="Product 6">
+            <h3>Product 6</h3>
+            <p>$69.99</p>
+            <button>Add to Cart</button>
+        </div>
+        
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/04/65/15/LD0004651580_2.jpg" alt="Product 7">
+            <h3>Product 7</h3>
+            <p>$79.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UbW8jt-0V8KL2U_KHkX_ewHaHa?rs=1&pid=ImgDetMain" alt="Product 10">
+            <h3>Product 10</h3>
+            <p>$109.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.-TVw7NphqAte-jfguQ9XiQHaHa?w=2000&h=2000&rs=1&pid=ImgDetMain" alt="Product 11">
+            <h3>Product 11</h3>
+            <p>$119.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.JsVhudbO2PB5Rq5u7gmy0AAAAA?rs=1&pid=ImgDetMain" alt="Product 12">
+            <h3>Product 12</h3>
+            <p>$129.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.BGzUxiik7Kfp5wabRCeqHgHaJ4?w=600&h=801&rs=1&pid=ImgDetMain" alt="Product 13">
+            <h3>Product 13</h3>
+            <p>$139.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 14">
+            <h3>Product 14</h3>
+            <p>$149.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.SFKhrEprdu5T4MQSvGO9GwHaHa?w=1300&h=1300&rs=1&pid=ImgDetMain" alt="Product 15">
+            <h3>Product 15</h3>
+            <p>$159.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/d0/23/43/d02343f802ba753e443335d41a57a069.jpg" alt="Product 16">
+            <h3>Product 16</h3>
+            <p>$169.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i0.wp.com/ultraskins.co.uk/wp-content/uploads/2020/09/apple-iphone-11-matte-green-skin-vinyl-1.jpg?fit=1300%2C1300&ssl=1" alt="Product 17">
+            <h3>Product 17</h3>
+            <p>$179.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.rvVtBZn28JUMaA9rCwxITAHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Product 18">
+            <h3>Product 18</h3>
+            <p>$189.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.LQmVBVMtGtC6uH2MW7dKeQHaHa?w=600&h=600&rs=1&pid=ImgDetMain" alt="Product 19">
+            <h3>Product 19</h3>
+            <p>$199.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 20">
+            <h3>Product 20</h3>
+            <p>$209.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
 
-    <!-- Product Section -->
-    <section class="product-list">
-      <h2>Featured Products</h2>
-      <div class="product-container" id="product-container">
-        <!-- Product cards will be injected here by JavaScript -->
-      </div>
-    </section>
-  </main>
+<section class="products-container">
+    <div class="products">
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UbW8jt-0V8KL2U_KHkX_ewHaHa?rs=1&pid=ImgDetMain" alt="Product 10">
+            <h3>Product 10</h3>
+            <p>$109.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/44/00/LD0005440098_2_0005440176_0005440261.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/r1600/ld/products/00/05/44/00/LD0005440043_2.jpg" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.bHTExtbGTXxZwc0GSWl8XAHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UPVrldN2D_n15WTi2HrC-QAAAA?w=267&h=400&rs=1&pid=ImgDetMain" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://3.bp.blogspot.com/-EvWRqyLLyFk/WSwyMErQzNI/AAAAAAAAAyI/D8vzDQxNa3IKzRMu6ZRKnhMdp2OLjWyTQCLcB/s1600/Apple-IPhone.png" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.f0TxVuQRnOhEoQq9JCmlzwHaHa?rs=1&pid=ImgDetMain" alt="Product 6">
+            <h3>Product 6</h3>
+            <p>$69.99</p>
+            <button>Add to Cart</button>
+        </div>
+        
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/04/65/15/LD0004651580_2.jpg" alt="Product 7">
+            <h3>Product 7</h3>
+            <p>$79.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UbW8jt-0V8KL2U_KHkX_ewHaHa?rs=1&pid=ImgDetMain" alt="Product 10">
+            <h3>Product 10</h3>
+            <p>$109.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.-TVw7NphqAte-jfguQ9XiQHaHa?w=2000&h=2000&rs=1&pid=ImgDetMain" alt="Product 11">
+            <h3>Product 11</h3>
+            <p>$119.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.JsVhudbO2PB5Rq5u7gmy0AAAAA?rs=1&pid=ImgDetMain" alt="Product 12">
+            <h3>Product 12</h3>
+            <p>$129.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.BGzUxiik7Kfp5wabRCeqHgHaJ4?w=600&h=801&rs=1&pid=ImgDetMain" alt="Product 13">
+            <h3>Product 13</h3>
+            <p>$139.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 14">
+            <h3>Product 14</h3>
+            <p>$149.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.SFKhrEprdu5T4MQSvGO9GwHaHa?w=1300&h=1300&rs=1&pid=ImgDetMain" alt="Product 15">
+            <h3>Product 15</h3>
+            <p>$159.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/d0/23/43/d02343f802ba753e443335d41a57a069.jpg" alt="Product 16">
+            <h3>Product 16</h3>
+            <p>$169.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i0.wp.com/ultraskins.co.uk/wp-content/uploads/2020/09/apple-iphone-11-matte-green-skin-vinyl-1.jpg?fit=1300%2C1300&ssl=1" alt="Product 17">
+            <h3>Product 17</h3>
+            <p>$179.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.rvVtBZn28JUMaA9rCwxITAHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Product 18">
+            <h3>Product 18</h3>
+            <p>$189.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.LQmVBVMtGtC6uH2MW7dKeQHaHa?w=600&h=600&rs=1&pid=ImgDetMain" alt="Product 19">
+            <h3>Product 19</h3>
+            <p>$199.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 20">
+            <h3>Product 20</h3>
+            <p>$209.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section><section class="products-container">
+    <div class="products">
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UPVrldN2D_n15WTi2HrC-QAAAA?w=267&h=400&rs=1&pid=ImgDetMain" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://3.bp.blogspot.com/-EvWRqyLLyFk/WSwyMErQzNI/AAAAAAAAAyI/D8vzDQxNa3IKzRMu6ZRKnhMdp2OLjWyTQCLcB/s1600/Apple-IPhone.png" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UbW8jt-0V8KL2U_KHkX_ewHaHa?rs=1&pid=ImgDetMain" alt="Product 10">
+            <h3>Product 10</h3>
+            <p>$109.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/44/00/LD0005440098_2_0005440176_0005440261.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/r1600/ld/products/00/05/44/00/LD0005440043_2.jpg" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.bHTExtbGTXxZwc0GSWl8XAHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UPVrldN2D_n15WTi2HrC-QAAAA?w=267&h=400&rs=1&pid=ImgDetMain" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://3.bp.blogspot.com/-EvWRqyLLyFk/WSwyMErQzNI/AAAAAAAAAyI/D8vzDQxNa3IKzRMu6ZRKnhMdp2OLjWyTQCLcB/s1600/Apple-IPhone.png" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.f0TxVuQRnOhEoQq9JCmlzwHaHa?rs=1&pid=ImgDetMain" alt="Product 6">
+            <h3>Product 6</h3>
+            <p>$69.99</p>
+            <button>Add to Cart</button>
+        </div>
+        
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/04/65/15/LD0004651580_2.jpg" alt="Product 7">
+            <h3>Product 7</h3>
+            <p>$79.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://media.ldlc.com/ld/products/00/05/43/97/LD0005439771_2_0005439871.jpg" alt="Product 8">
+            <h3>Product 8</h3>
+            <p>$89.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.dhF43zovji5ReDYqgsT8IQHaHa?w=900&h=900&rs=1&pid=ImgDetMain" alt="Product 9">
+            <h3>Product 9</h3>
+            <p>$99.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.UbW8jt-0V8KL2U_KHkX_ewHaHa?rs=1&pid=ImgDetMain" alt="Product 10">
+            <h3>Product 10</h3>
+            <p>$109.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.-TVw7NphqAte-jfguQ9XiQHaHa?w=2000&h=2000&rs=1&pid=ImgDetMain" alt="Product 11">
+            <h3>Product 11</h3>
+            <p>$119.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.JsVhudbO2PB5Rq5u7gmy0AAAAA?rs=1&pid=ImgDetMain" alt="Product 12">
+            <h3>Product 12</h3>
+            <p>$129.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.BGzUxiik7Kfp5wabRCeqHgHaJ4?w=600&h=801&rs=1&pid=ImgDetMain" alt="Product 13">
+            <h3>Product 13</h3>
+            <p>$139.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 14">
+            <h3>Product 14</h3>
+            <p>$149.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.SFKhrEprdu5T4MQSvGO9GwHaHa?w=1300&h=1300&rs=1&pid=ImgDetMain" alt="Product 15">
+            <h3>Product 15</h3>
+            <p>$159.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/d0/23/43/d02343f802ba753e443335d41a57a069.jpg" alt="Product 16">
+            <h3>Product 16</h3>
+            <p>$169.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i0.wp.com/ultraskins.co.uk/wp-content/uploads/2020/09/apple-iphone-11-matte-green-skin-vinyl-1.jpg?fit=1300%2C1300&ssl=1" alt="Product 17">
+            <h3>Product 17</h3>
+            <p>$179.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.rvVtBZn28JUMaA9rCwxITAHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Product 18">
+            <h3>Product 18</h3>
+            <p>$189.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIP.LQmVBVMtGtC6uH2MW7dKeQHaHa?w=600&h=600&rs=1&pid=ImgDetMain" alt="Product 19">
+            <h3>Product 19</h3>
+            <p>$199.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://i.pinimg.com/originals/ed/a5/d7/eda5d7c05297d26882404d4d8939e4cf.jpg" alt="Product 20">
+            <h3>Product 20</h3>
+            <p>$209.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
 
-  <!-- Footer Section -->
-  <footer>
-    <p>&copy; 2025 My Shop. All rights reserved.</p>
-  </footer>
-
-  <script src="scripts.js"></script>
+    <footer>
+        <p>&copy; 2025 ShopEasy. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
