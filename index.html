@@ -12,6 +12,57 @@
             background-color: #121212;
             color: #ffffff;
         }
+        /* Media query for laptops */
+@media (min-width: 768px) {
+  .product-card {
+    max-width: 600px;
+    flex-direction: row;
+  }
+
+  .product-image {
+    width: 50%;
+  }
+
+  .product-info {
+    padding: 24px;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
+  }
+
+  .product-description {
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.3rem;
+  }
+}
+
+/* Media query for mobile */
+@media (max-width: 480px) {
+  .product-card {
+    margin: 10px auto;
+  }
+
+  .product-name {
+    font-size: 1rem;
+  }
+
+  .product-description {
+    font-size: 0.8rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+  .buy-now-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
         header {
     display: flex;
     justify-content: space-between;
