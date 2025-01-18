@@ -11,39 +11,11 @@
             font-family: 'Roboto', sans-serif;
             background-color: #121212;
             color: #ffffff;
-        }
-        /* Media query for laptops */
-@media (min-width: 768px) {
-  .product-card {
-    max-width: 600px;
-    flex-direction: row;
-  }
-
-  .product-image {
-    width: 50%;
-  }
-
-  .product-info {
-    padding: 24px;
-  }
-
-  .product-name {
-    font-size: 1.5rem;
-  }
-
-  .product-description {
-    font-size: 1rem;
-  }
-
-  .product-price {
-    font-size: 1.3rem;
-  }
-}
-
-/* Media query for mobile */
+ * Media Query: Extra Small Screens (Mobile Portrait) */
 @media (max-width: 480px) {
   .product-card {
     margin: 10px auto;
+    max-width: 90%;
   }
 
   .product-name {
@@ -61,6 +33,132 @@
   .buy-now-btn {
     font-size: 0.9rem;
     padding: 8px 12px;
+  }
+}
+
+/* Media Query: Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+  .product-card {
+    max-width: 80%;
+    flex-direction: row;
+  }
+
+  .product-image {
+    width: 50%;
+  }
+
+  .product-info {
+    padding: 16px;
+  }
+}
+
+/* Media Query: Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .product-card {
+    max-width: 600px;
+    flex-direction: row;
+  }
+
+  .product-image {
+    width: 40%;
+  }
+
+  .product-info {
+    padding: 20px;
+  }
+
+  .product-name {
+    font-size: 1.4rem;
+  }
+
+  .product-description {
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+  }
+}
+
+/* Media Query: Laptops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .product-card {
+    max-width: 800px;
+    margin: 30px auto;
+  }
+
+  .product-image {
+    width: 45%;
+  }
+
+  .product-info {
+    padding: 24px;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
+  }
+
+  .product-description {
+    font-size: 1.1rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+}
+
+/* Media Query: Ultra-Wide Screens */
+@media (min-width: 1441px) {
+  .product-card {
+    max-width: 1000px;
+    flex-direction: row;
+  }
+
+  .product-image {
+    width: 50%;
+  }
+
+  .product-info {
+    padding: 30px;
+  }
+
+  .product-name {
+    font-size: 1.8rem;
+  }
+
+  .product-description {
+    font-size: 1.2rem;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+  }
+
+  .buy-now-btn {
+    font-size: 1.1rem;
+    padding: 12px 18px;
+  }
+}
+
+/* Media Query: Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .product-card {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+  }
+
+  .product-name, .product-description, .product-price {
+    color: #fff;
+  }
+
+  .buy-now-btn {
+    background-color: #0056b3;
+  }
+
+  .buy-now-btn:hover {
+    background-color: #003f7f;
   }
 }
         header {
